@@ -38,10 +38,6 @@ final class MapboxMapController: NSObject, FlutterPlatformView {
         mapView.backgroundColor = UIColor.clear 
         mapView.layer.backgroundColor = UIColor.clear.cgColor  
         mapboxMap = mapView.mapboxMap
-
-        if mapboxMap.style.layerExists(withId: "background") {
-            try? mapboxMap.style.setStyleLayerProperty(for: "background", property: "visibility", value: "none")
-        }
         
         channel = FlutterMethodChannel(
             name: "plugins.flutter.io.\(channelSuffix)",
