@@ -34,8 +34,15 @@ final class MapboxMapController: NSObject, FlutterPlatformView {
             .set(key: "com.mapbox.common.telemetry.internal.custom_user_agent_fragment", value: "FlutterPlugin/\(pluginVersion)")
 
         mapView = MapView(frame: frame, mapInitOptions: mapInitOptions)
+        mapView.isOpaque = false  
+        mapView.backgroundColor = UIColor.clear 
+        mapView.layer.backgroundColor = UIColor.clear.cgColor  
         mapboxMap = mapView.mapboxMap
 
+        if mapboxMap.style.layerExists(withId: "background") {
+            try? mapboxMap.style.setStyleLayerProperty(for: "background", property: "visibility", value: "none")
+        }
+        
         channel = FlutterMethodChannel(
             name: "plugins.flutter.io.\(channelSuffix)",
             binaryMessenger: binaryMessenger.messenger
