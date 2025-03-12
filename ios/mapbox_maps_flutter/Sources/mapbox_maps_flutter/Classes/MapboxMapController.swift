@@ -35,8 +35,6 @@ final class MapboxMapController: NSObject, FlutterPlatformView {
 
         mapView = MapView(frame: frame, mapInitOptions: mapInitOptions)
         mapView.isOpaque = false  
-        mapView.backgroundColor = UIColor.clear 
-        mapView.layer.backgroundColor = UIColor.clear.cgColor  
         mapboxMap = mapView.mapboxMap
         
         channel = FlutterMethodChannel(
